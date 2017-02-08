@@ -1,1 +1,0 @@
-This repository include the code of android development for professionals.
