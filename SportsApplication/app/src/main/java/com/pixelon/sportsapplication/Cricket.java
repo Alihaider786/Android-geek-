@@ -1,5 +1,8 @@
 package com.pixelon.sportsapplication;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -71,6 +74,13 @@ public class Cricket extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            SharedPreferences.Editor editor = getSharedPreferences("MY_PREF",MODE_PRIVATE).edit();
+            editor.putString("LOGIN","NO");
+            editor.commit();
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
             return true;
         }
 

@@ -1,6 +1,7 @@
 package com.pixelon.sportsapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -117,6 +118,11 @@ loginButton = (LoginButton)findViewById(R.id.login_button);
             Toast.makeText(this, name+" "+email, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(Login.this, MainActivity.class);
             startActivity(intent);
+            SharedPreferences preferences = getSharedPreferences("MY_PREF",MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("LOGIN","YES");
+            editor.commit();
+            finish();
 
 
         }
@@ -137,5 +143,8 @@ loginButton = (LoginButton)findViewById(R.id.login_button);
     }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

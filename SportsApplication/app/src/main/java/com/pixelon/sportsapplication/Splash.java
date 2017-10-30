@@ -15,9 +15,17 @@ public class Splash extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splash.this, Login.class);
+                if(getSharedPreferences("MY_PREF",MODE_PRIVATE).getString("LOGIN","").equals("YES"))
+                {
+                Intent intent = new Intent(Splash.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+                }
+                else {
+                    Intent intent = new Intent(Splash.this, Login.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }, 3000);
     }
