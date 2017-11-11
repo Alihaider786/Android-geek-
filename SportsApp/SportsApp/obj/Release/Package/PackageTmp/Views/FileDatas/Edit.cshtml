@@ -1,0 +1,99 @@
+﻿@model SportsApp.Models.FileData
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "FileDatas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>FileData</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tittle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tittle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tittle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    List<SelectListItem> listItems = new List<SelectListItem>();
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Cricket",
+                        Value = "cricket"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Football",
+                        Value = "football",
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Tennis",
+                        Value = "tennis"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Hockey",
+                        Value = "hockey"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Badminton",
+                        Value = "badminton"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Swimming",
+                        Value = "swimming"
+                    });
+                }
+
+                @Html.DropDownListFor(model => model.Category, listItems, new { htmlAttributes = new { @class = "form-control" } })
+               
+                
+           
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("PDF File", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="uploadFile"  accept=".pdf"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" oninvalid="@ViewBag.err"/>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

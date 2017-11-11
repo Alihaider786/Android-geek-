@@ -1,0 +1,210 @@
+﻿@model SportsApp.Models.Images
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("Edit", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Images</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UrlToImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UrlToImage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UrlToImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Add Image (If no url available)", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                <input type="file" name="uploadFile" accept="image/*" />
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Categoty, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+                    List<SelectListItem> listItems = new List<SelectListItem>();
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Batting",
+                        Value = "batting"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Bowling",
+                        Value = "bowling",
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Fielding",
+                        Value = "fielding"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Stretching",
+                        Value = "stretching"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Training",
+                        Value = "training"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Football Defending",
+                        Value = "footballdefending"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Football Attacking",
+                        Value = "footballattacking"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Football Midfield",
+                        Value = "footballmidfield"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Football GoalKeeping",
+                        Value = "footballgoalkeeping"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Hockey Defending",
+                        Value = "hockeydefending"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "hockey Attacking",
+                        Value = "hockeyattacking"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Hockey Midfield",
+                        Value = "hockeymidfield"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Hockey GoalKeeping",
+                        Value = "hockeygoalkeeping"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Tennis Grip",
+                        Value = "tennisgrip"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Tennis Serve",
+                        Value = "tennisserve"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Tennis Forehand",
+                        Value = "tennisforehand"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Tennis Backhand",
+                        Value = "tennisbackhand"
+                    });
+
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Tennis Volley",
+                        Value = "tennisvolley"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Badminton Serve",
+                        Value = "badmintonserve"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Badminton Grip",
+                        Value = "badmintongrip"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Badminton Stroke",
+                        Value = "badmintonstroke"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Badminton Spin",
+                        Value = "badmintonspin"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Swimming Butterfly",
+                        Value = "swimmingbutterfly"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Swimming Backstroke",
+                        Value = "swimmingbackstroke"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Swimming Breaststroke",
+                        Value = "swimmingbreaststroke"
+                    });
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = "Swimming Freestyle",
+                        Value = "swimmingfreestyle"
+                    });
+
+                }
+
+                @Html.DropDownListFor(model => model.Categoty, listItems, new { htmlAttributes = new { @class = "form-control" } })
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
